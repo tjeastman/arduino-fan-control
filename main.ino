@@ -1,4 +1,5 @@
 int INPUT_PIN = 2;
+int OUTPUT_PIN = 3;
 
 int FAN_INPUT_PULSE = 0;
 
@@ -13,6 +14,9 @@ void loop() {
   int value = analogRead(INPUT_PIN);
   Serial.print("input value: ");
   Serial.println(value);
+
+  // adjust the fan speed based on the input value
+  analogWrite(OUTPUT_PIN, value / 4);
 
   // determine current RPM of the fan
   unsigned long pulse_duration = pulseIn(FAN_INPUT_PULSE, LOW);
