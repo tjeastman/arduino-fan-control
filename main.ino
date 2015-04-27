@@ -1,6 +1,7 @@
 int INPUT_PIN = 2;
 int OUTPUT_PIN = 3;
 int BUTTON_PIN = 5;
+int POWER_PIN = 4;
 
 int FAN_INPUT_PULSE = 0;
 
@@ -11,12 +12,19 @@ void setup() {
   digitalWrite(FAN_INPUT_PULSE, HIGH);
 
   pinMode(BUTTON_PIN, INPUT);
+  pinMode(POWER_PIN, OUTPUT);
 }
 
 void loop() {
   int button = digitalRead(BUTTON_PIN);
   Serial.print("button state: ");
   Serial.println(button);
+
+  if (button == 0) {
+    digitalWrite(POWER_PIN, 0);
+  } else {
+    digitalWrite(POWER_PIN, 1);
+  }
 
   int value = analogRead(INPUT_PIN);
   Serial.print("input value: ");
