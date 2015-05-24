@@ -1,4 +1,4 @@
-int INPUT_PIN = 2;
+int INPUT_PIN = 0;
 int OUTPUT_PIN = 3;
 int BUTTON_PIN = 5;
 int POWER_PIN = 4;
