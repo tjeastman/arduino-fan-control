@@ -11,7 +11,7 @@ void setup() {
   pinMode(FAN_INPUT_PULSE, INPUT);
   digitalWrite(FAN_INPUT_PULSE, HIGH);
 
-  pinMode(BUTTON_PIN, INPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(POWER_PIN, OUTPUT);
 }
 
