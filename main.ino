@@ -21,9 +21,9 @@ void loop() {
   Serial.println(button);
 
   if (button == 0) {
-    digitalWrite(POWER_PIN, 0);
+    digitalWrite(POWER_PIN, LOW);
   } else {
-    digitalWrite(POWER_PIN, 1);
+    digitalWrite(POWER_PIN, HIGH);
   }
 
   int value = analogRead(INPUT_PIN);
