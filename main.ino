@@ -1,6 +1,6 @@
 int INPUT_PIN = 0;
 int OUTPUT_PIN = 3;
-int BUTTON_PIN = 5; // determines whether to turn the fan on or off
+int BUTTON_PIN = 8; // determines whether to turn the fan on or off
 int POWER_PIN = 4;
 
 int FAN_INPUT_PULSE = 0;
