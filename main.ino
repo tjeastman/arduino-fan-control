@@ -1,9 +1,9 @@
 int INPUT_PIN = 0;
-int OUTPUT_PIN = 3;
+int OUTPUT_PIN = 11;
 int BUTTON_PIN = 8; // determines whether to turn the fan on or off
-int POWER_PIN = 4;
+int POWER_PIN = 12;
 
-int FAN_INPUT_PULSE = 0;
+int FAN_INPUT_PULSE = 10;
 
 void setup() {
   Serial.begin(9600);
