@@ -7,7 +7,8 @@ int FAN_POWER_PIN = 12;
 
 int OUTPUT_FREQUENCY = 1000;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
 
   pinMode(FAN_SENSE_PIN, INPUT);
@@ -17,7 +18,18 @@ void setup() {
   pinMode(FAN_POWER_PIN, OUTPUT);
 }
 
-void loop() {
+double getFanSpeed()
+{
+  // determine current RPM of the fan
+  unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
+  // duration is in microseconds (1/1,000,000 of a second)
+  double frequency = 1000000 / pulse_duration;
+  double speed = frequency / 2 * 60;
+  return speed;
+}
+
+void loop()
+{
   int switch_state;
   int value;
 
@@ -36,15 +48,12 @@ void loop() {
     analogWrite(FAN_CONTROL_PIN, value / 4);
   }
 
-  // determine current RPM of the fan
-  // duration is in microseconds (1/1,000,000 of a second)
-  unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
-  double frequency = 1000000 / pulse_duration;
+  double speed = getFanSpeed();
 
   Serial.print("button state: ");
   Serial.println(switch_state);
   Serial.print("input value: ");
   Serial.println(value);
   Serial.print("fan RPM:");
-  Serial.println(frequency / 2 * 60);
+  Serial.println(speed);
 }
