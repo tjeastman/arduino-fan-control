@@ -1,7 +1,7 @@
 int INPUT_PIN = 0;
 int FAN_CONTROL_PIN = 11; // blue
 int FAN_SWITCH_PIN = 8; // determines whether to turn the fan on or off
-int POWER_PIN = 12;
+int FAN_POWER_PIN = 12;
 
 int FAN_SENSE_PIN = 10; // green
 
@@ -15,17 +15,18 @@ void setup() {
   digitalWrite(FAN_SENSE_PIN, HIGH);
 
   pinMode(FAN_SWITCH_PIN, INPUT_PULLUP);
-  pinMode(POWER_PIN, OUTPUT);
+  pinMode(FAN_POWER_PIN, OUTPUT);
 }
 
 void loop() {
   iterations++;
-  int button = digitalRead(FAN_SWITCH_PIN);
 
-  if (button == LOW) {
-    digitalWrite(POWER_PIN, LOW);
+  // turn power to the fan on or off via a MOSFET
+  int switch_state = digitalRead(FAN_SWITCH_PIN);
+  if (switch_state == LOW) {
+    digitalWrite(FAN_POWER_PIN, LOW);
   } else {
-    digitalWrite(POWER_PIN, HIGH);
+    digitalWrite(FAN_POWER_PIN, HIGH);
   }
 
   int value = analogRead(INPUT_PIN);
