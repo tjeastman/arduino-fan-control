@@ -38,19 +38,27 @@ double getFanSpeed()
   return speed;
 }
 
+void setFanSpeed(byte duty_cycle)
+{
+  // set the fan speed based on the PWM duty cycle
+  analogWrite(FAN_CONTROL_PIN, duty_cycle);  
+}
+
 void loop()
 {
   int switch_state;
   int potentiometer_value;
+  int duty_cycle;
 
   for (int i = 0; i < OUTPUT_FREQUENCY; ++i) {
     switch_state = digitalRead(FAN_SWITCH_PIN);
     setFanPower(switch_state == HIGH);
 
+    // read the analog input value in the range [0, 1023] and convert
+    // it into an appropriate PWM duty cycle in [0, 255]
     potentiometer_value = analogRead(INPUT_PIN);
-
-    // adjust the fan speed based on the input value
-    analogWrite(FAN_CONTROL_PIN, potentiometer_value / 4);
+    duty_cycle = potentiometer_value / 4;
+    setFanSpeed(duty_cycle);
   }
 
   double speed = getFanSpeed();
@@ -59,6 +67,8 @@ void loop()
   Serial.println(switch_state);
   Serial.print("potentiometer value: ");
   Serial.println(potentiometer_value);
+  Serial.print("duty cycle: ");
+  Serial.println(duty_cycle);
   Serial.print("fan speed (in RPM):");
   Serial.println(speed);
 }
