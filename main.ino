@@ -41,16 +41,16 @@ double getFanSpeed()
 void loop()
 {
   int switch_state;
-  int value;
+  int potentiometer_value;
 
   for (int i = 0; i < OUTPUT_FREQUENCY; ++i) {
     switch_state = digitalRead(FAN_SWITCH_PIN);
     setFanPower(switch_state == HIGH);
 
-    value = analogRead(INPUT_PIN);
+    potentiometer_value = analogRead(INPUT_PIN);
 
     // adjust the fan speed based on the input value
-    analogWrite(FAN_CONTROL_PIN, value / 4);
+    analogWrite(FAN_CONTROL_PIN, potentiometer_value / 4);
   }
 
   double speed = getFanSpeed();
@@ -58,7 +58,7 @@ void loop()
   Serial.print("button state: ");
   Serial.println(switch_state);
   Serial.print("input value: ");
-  Serial.println(value);
+  Serial.println(potentiometer_value);
   Serial.print("fan RPM:");
   Serial.println(speed);
 }
