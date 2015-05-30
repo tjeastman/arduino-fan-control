@@ -22,7 +22,7 @@ void loop() {
   iterations++;
   int button = digitalRead(FAN_SWITCH_PIN);
 
-  if (button == 0) {
+  if (button == LOW) {
     digitalWrite(POWER_PIN, LOW);
   } else {
     digitalWrite(POWER_PIN, HIGH);
