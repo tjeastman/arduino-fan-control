@@ -3,7 +3,7 @@ int OUTPUT_PIN = 11; // blue
 int BUTTON_PIN = 8; // determines whether to turn the fan on or off
 int POWER_PIN = 12;
 
-int FAN_INPUT_PULSE = 10; // green
+int FAN_SENSE_PIN = 10; // green
 
 int OUTPUT_FREQUENCY = 1000;
 int iterations = 0;
@@ -11,8 +11,8 @@ int iterations = 0;
 void setup() {
   Serial.begin(9600);
 
-  pinMode(FAN_INPUT_PULSE, INPUT);
-  digitalWrite(FAN_INPUT_PULSE, HIGH);
+  pinMode(FAN_SENSE_PIN, INPUT);
+  digitalWrite(FAN_SENSE_PIN, HIGH);
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(POWER_PIN, OUTPUT);
@@ -34,7 +34,8 @@ void loop() {
   analogWrite(OUTPUT_PIN, value / 4);
 
   // determine current RPM of the fan
-  unsigned long pulse_duration = pulseIn(FAN_INPUT_PULSE, LOW);
+  // duration is in microseconds (1/1,000,000 of a second)
+  unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
   double frequency = 1000000 / pulse_duration;
 
   if (iterations % OUTPUT_FREQUENCY == 0) {
