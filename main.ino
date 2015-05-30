@@ -62,8 +62,6 @@ void loop()
     setFanSpeed(duty_cycle);
   }
 
-  double speed = getFanSpeed();
-
   Serial.print("switch state: ");
   Serial.println(switch_state);
   Serial.print("potentiometer value: ");
@@ -71,5 +69,10 @@ void loop()
   Serial.print("duty cycle: ");
   Serial.println(duty_cycle);
   Serial.print("fan speed (in RPM):");
-  Serial.println(speed);
+  if (switch_state == HIGH) {
+    double speed = getFanSpeed();
+    Serial.println(speed);
+  } else {
+    Serial.println("OFF");
+  }
 }
