@@ -30,7 +30,7 @@ void setFanPower(boolean power_on)
 
 double getFanSpeed()
 {
-  // determine current RPM of the fan
+  // determine the current speed of the fan in RPM
   unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
   // duration is in microseconds (1/1,000,000 of a second)
   double frequency = 1000000 / pulse_duration;
