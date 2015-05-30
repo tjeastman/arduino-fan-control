@@ -11,11 +11,10 @@ void setup()
 {
   Serial.begin(9600);
 
+  pinMode(FAN_POWER_PIN, OUTPUT);
+  pinMode(FAN_SWITCH_PIN, INPUT_PULLUP);
   pinMode(FAN_SENSE_PIN, INPUT);
   digitalWrite(FAN_SENSE_PIN, HIGH);
-
-  pinMode(FAN_SWITCH_PIN, INPUT_PULLUP);
-  pinMode(FAN_POWER_PIN, OUTPUT);
 }
 
 void setFanPower(boolean power_on)
