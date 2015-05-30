@@ -1,4 +1,4 @@
-int INPUT_PIN = 0;
+int POT_INPUT_PIN = 0;
 
 int FAN_SWITCH_PIN = 8;
 int FAN_SENSE_PIN = 10; // green wire
@@ -58,7 +58,7 @@ void loop()
 
     // read the potentiometer input value in the range [0, 1023] and convert
     // it into an appropriate PWM duty cycle in the range [0, 255]
-    potentiometer_value = analogRead(INPUT_PIN);
+    potentiometer_value = analogRead(POT_INPUT_PIN);
     duty_cycle = potentiometer_value / 4;
     setFanSpeed(duty_cycle);
   }
