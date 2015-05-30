@@ -5,7 +5,7 @@ int FAN_SENSE_PIN = 10; // green wire
 int FAN_CONTROL_PIN = 11; // blue wire
 int FAN_POWER_PIN = 12;
 
-int OUTPUT_FREQUENCY = 1000;
+int REPORT_FREQUENCY = 1000;
 
 void setup()
 {
@@ -51,7 +51,7 @@ void loop()
   int potentiometer_value;
   int duty_cycle;
 
-  for (int i = 0; i < OUTPUT_FREQUENCY; ++i) {
+  for (int i = 0; i < REPORT_FREQUENCY; ++i) {
     // read the toggle switch state and enable or disable the fan accordingly
     switch_state = digitalRead(FAN_SWITCH_PIN);
     setFanPower(switch_state == HIGH);
