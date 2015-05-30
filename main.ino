@@ -1,9 +1,9 @@
 int INPUT_PIN = 0;
-int FAN_CONTROL_PIN = 11; // blue
-int FAN_SWITCH_PIN = 8; // determines whether to turn the fan on or off
-int FAN_POWER_PIN = 12;
 
-int FAN_SENSE_PIN = 10; // green
+int FAN_SWITCH_PIN = 8;
+int FAN_SENSE_PIN = 10; // green wire
+int FAN_CONTROL_PIN = 11; // blue wire
+int FAN_POWER_PIN = 12;
 
 int OUTPUT_FREQUENCY = 1000;
 int iterations = 0;
