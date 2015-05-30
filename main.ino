@@ -18,6 +18,16 @@ void setup()
   pinMode(FAN_POWER_PIN, OUTPUT);
 }
 
+void setFanPower(boolean power_on)
+{
+  // turn power to the fan on or off via a MOSFET
+  if (power_on) {
+    digitalWrite(FAN_POWER_PIN, HIGH);
+  } else {
+    digitalWrite(FAN_POWER_PIN, LOW);
+  }
+}
+
 double getFanSpeed()
 {
   // determine current RPM of the fan
@@ -34,13 +44,8 @@ void loop()
   int value;
 
   for (int i = 0; i < OUTPUT_FREQUENCY; ++i) {
-    // turn power to the fan on or off via a MOSFET
     switch_state = digitalRead(FAN_SWITCH_PIN);
-    if (switch_state == LOW) {
-      digitalWrite(FAN_POWER_PIN, LOW);
-    } else {
-      digitalWrite(FAN_POWER_PIN, HIGH);
-    }
+    setFanPower(switch_state == HIGH);
 
     value = analogRead(INPUT_PIN);
 
