@@ -1,5 +1,5 @@
 int INPUT_PIN = 0;
-int OUTPUT_PIN = 11; // blue
+int FAN_CONTROL_PIN = 11; // blue
 int BUTTON_PIN = 8; // determines whether to turn the fan on or off
 int POWER_PIN = 12;
 
@@ -31,7 +31,7 @@ void loop() {
   int value = analogRead(INPUT_PIN);
 
   // adjust the fan speed based on the input value
-  analogWrite(OUTPUT_PIN, value / 4);
+  analogWrite(FAN_CONTROL_PIN, value / 4);
 
   // determine current RPM of the fan
   // duration is in microseconds (1/1,000,000 of a second)
