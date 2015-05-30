@@ -55,10 +55,10 @@ void loop()
 
   double speed = getFanSpeed();
 
-  Serial.print("button state: ");
+  Serial.print("switch state: ");
   Serial.println(switch_state);
-  Serial.print("input value: ");
+  Serial.print("potentiometer value: ");
   Serial.println(potentiometer_value);
-  Serial.print("fan RPM:");
+  Serial.print("fan speed (in RPM):");
   Serial.println(speed);
 }
