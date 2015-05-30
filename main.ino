@@ -33,12 +33,12 @@ void loop() {
   // adjust the fan speed based on the input value
   analogWrite(FAN_CONTROL_PIN, value / 4);
 
-  // determine current RPM of the fan
-  // duration is in microseconds (1/1,000,000 of a second)
-  unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
-  double frequency = 1000000 / pulse_duration;
-
   if (iterations % OUTPUT_FREQUENCY == 0) {
+    // determine current RPM of the fan
+    // duration is in microseconds (1/1,000,000 of a second)
+    unsigned long pulse_duration = pulseIn(FAN_SENSE_PIN, LOW);
+    double frequency = 1000000 / pulse_duration;
+
     Serial.print("button state: ");
     Serial.println(button);
     Serial.print("input value: ");
