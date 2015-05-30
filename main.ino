@@ -51,11 +51,12 @@ void loop()
   int duty_cycle;
 
   for (int i = 0; i < OUTPUT_FREQUENCY; ++i) {
+    // read the toggle switch state and enable or disable the fan accordingly
     switch_state = digitalRead(FAN_SWITCH_PIN);
     setFanPower(switch_state == HIGH);
 
-    // read the analog input value in the range [0, 1023] and convert
-    // it into an appropriate PWM duty cycle in [0, 255]
+    // read the potentiometer input value in the range [0, 1023] and convert
+    // it into an appropriate PWM duty cycle in the range [0, 255]
     potentiometer_value = analogRead(INPUT_PIN);
     duty_cycle = potentiometer_value / 4;
     setFanSpeed(duty_cycle);
