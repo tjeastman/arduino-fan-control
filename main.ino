@@ -1,3 +1,5 @@
+#include <TM1637Display.h>
+
 int POT_INPUT_PIN = 0;
 
 int FAN_SWITCH_PIN = 8;
@@ -7,9 +9,15 @@ int FAN_POWER_PIN = 12;
 
 int REPORT_FREQUENCY = 10000;
 
+int DISPLAY_CLK_PIN = 4;
+int DISPLAY_IO_PIN = 7;
+TM1637Display *display;
+
 void setup()
 {
   Serial.begin(9600);
+
+  display = new TM1637Display(DISPLAY_CLK_PIN, DISPLAY_IO_PIN);
 
   pinMode(FAN_POWER_PIN, OUTPUT);
   pinMode(FAN_SWITCH_PIN, INPUT_PULLUP);
@@ -50,6 +58,8 @@ void loop()
   int potentiometer_value;
   int duty_cycle;
 
+  display->setBrightness(0x0f);
+
   for (int i = 0; i < REPORT_FREQUENCY; ++i) {
     // read the toggle switch state and enable or disable the fan accordingly
     switch_state = digitalRead(FAN_SWITCH_PIN);
@@ -72,7 +82,9 @@ void loop()
   if (switch_state == HIGH) {
     double speed = getFanSpeed();
     Serial.println(speed);
+    display->showNumberDec((int) speed);
   } else {
     Serial.println("OFF");
+    display->clear();
   }
 }
