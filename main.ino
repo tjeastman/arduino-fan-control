@@ -41,7 +41,7 @@ double getFanSpeed()
 void setFanSpeed(byte duty_cycle)
 {
   // set the fan speed based on the PWM duty cycle
-  analogWrite(FAN_CONTROL_PIN, duty_cycle);  
+  analogWrite(FAN_CONTROL_PIN, duty_cycle);
 }
 
 void loop()
