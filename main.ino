@@ -5,7 +5,7 @@ int FAN_SENSE_PIN = 10; // green wire
 int FAN_CONTROL_PIN = 11; // blue wire
 int FAN_POWER_PIN = 12;
 
-int REPORT_FREQUENCY = 1000;
+int REPORT_FREQUENCY = 10000;
 
 void setup()
 {
